@@ -1,0 +1,23 @@
+div {
+    display: flex;
+    flex-direction: column;
+    width: 4rem;
+    align-items: center;
+    box-shadow: 1px 1px 1px #a0a0a0;
+
+    button, span {
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
+        padding: 0.2rem;
+        font-weight: bold;
+    }
+
+    .positive {
+        color: blue;
+    }
+
+    .negative {
+        color: red;
+    }
+}

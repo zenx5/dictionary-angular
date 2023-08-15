@@ -1,0 +1,36 @@
+<div class="main">
+    <div class="form">
+        <h1>Dictionary</h1>
+        <form>
+            <input type="text" placeholder="Insert Word" />
+            <button>Search</button>
+        </form>
+    </div>
+    <div class="body">
+        <div>
+            <span *ngFor="let item of result; index as index">
+                <b>{{ showIndex ? index+1 + ")" : null }} {{item.word}}</b>
+                <ul>
+                    <li *ngFor="let meaning of item.meanings; index as indexMeaning">
+                        <span *ngIf="showType">({{ meaning.partOfSpeech }}) </span>
+                        <app-pronunciation [transcription]="getPronunciation(item, indexMeaning)?.at(0)" [audio]="getPronunciation(item, indexMeaning)?.at(1)"></app-pronunciation>
+                        <ul>
+                            <app-definition  *ngFor="let definition of meaning.definitions"
+                                [definition]="definition.definition"
+                                [example]="definition.example"
+                                [showExam]="showExam"
+                             />
+                        </ul>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </div>
+    <footer>
+        <ul>
+            <li>
+                <a routerLink="/configure">Configure</a>
+            </li>
+        </ul>
+    </footer>
+</div>

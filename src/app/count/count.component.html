@@ -1,0 +1,5 @@
+<div>
+    <button (click)="increment()">+</button>
+    <span class="{{ count>0 ? 'positive' : (count<0 ? 'negative' : '') }}">{{count}}</span>
+    <button (click)="decrement()">-</button>
+</div>

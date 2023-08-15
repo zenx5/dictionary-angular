@@ -1,0 +1,6 @@
+<span>
+    <small (click)="play()" class="{{playable ? 'pronunciation playable' : 'pronunciation'}}" >{{ transcription }}</small>
+    <audio ngModel #player>
+        <source src="{{audio}}" />
+    </audio>
+</span>

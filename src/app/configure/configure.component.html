@@ -1,0 +1,11 @@
+<div>
+    <ul>
+        <li *ngFor="let item of options">
+            <input type="checkbox" id="{{item.name}}" name="{{item.name}}" checked="{{ isChecked(item.value) }}" (change)="toggleValue(item.name, item.value)"/>
+            <label for="{{item.name}}">{{ item.label }}</label>
+        </li>
+    </ul>
+    <div>
+        <button routerLink="/dictionary" >Exit</button>
+    </div>
+</div>

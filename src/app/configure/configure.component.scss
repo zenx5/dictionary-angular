@@ -1,0 +1,35 @@
+div {
+
+    ul {
+        li {
+            list-style: none;
+            padding: 10px;
+            cursor: pointer;
+
+            input {
+                margin: 10px;
+            }
+        }
+    }
+
+    div {
+        display:flex;
+        justify-content: space-around;
+
+        button {
+            padding: 5px 20px;
+            background-color: #aa3333;
+            color: #ffffff;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 4px 4px 10px gray;
+
+            &:disabled {
+                background-color: lightgray;
+                color: gray;
+                box-shadow: 0px 0px 1px gray;
+            }
+        }
+    }
+}
