@@ -1,13 +1,15 @@
 <div class="main">
     <div class="form">
         <h1>Dictionary</h1>
-        <form>
-            <input type="text" placeholder="Insert Word" />
-            <button>Search</button>
-        </form>
+        <div>
+            <input type="text" placeholder="Insert Word" ngModel #word/>
+            <button type="button" (click)="searchWord()">Search</button>
+        </div>
     </div>
     <div class="body">
-        <div>
+        <i *ngIf="loading">Loading...</i>
+        <i *ngIf="!loading && error">{{errorMessage}}</i>
+        <div *ngIf="!loading">
             <span *ngFor="let item of result; index as index">
                 <b>{{ showIndex ? index+1 + ")" : null }} {{item.word}}</b>
                 <ul>

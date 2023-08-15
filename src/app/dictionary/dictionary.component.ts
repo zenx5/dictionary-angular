@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { resultData } from 'src/assets/result';
-import { DictionaryResult, Phonetic } from 'src/assets/type';
+import { DictionaryResult, Phonetic, ResponseError } from 'src/assets/type';
 import { SettingsService } from '../settings.service';
+import { QueryWordService } from '../query-word.service';
 
 @Component({
   selector: 'app-dictionary',
@@ -9,14 +10,18 @@ import { SettingsService } from '../settings.service';
   styleUrls: ['./dictionary.component.scss']
 })
 export class DictionaryComponent {
-  result:Array<DictionaryResult> = resultData
+  @ViewChild('word') word!:ElementRef<HTMLInputElement>
+  result:Array<DictionaryResult> = []
+  loading:boolean = false
+  error:boolean = false
+  errorMessage:string = ""
   showIndex!:boolean;
   showType!:boolean;
   showPron!:boolean;
   showPlay!:boolean;
   showExam!:boolean;
 
-  constructor( public settings:SettingsService ) {
+  constructor( public settings:SettingsService, public queries:QueryWordService ) {
     const options = settings.getOptions()
     console.log( options )
     this.showIndex = options.find( option => option.name=='show_enum')?.value || false;
@@ -26,6 +31,25 @@ export class DictionaryComponent {
     this.showExam = options.find( option => option.name=='show_exam')?.value || false;
   }
 
+  async searchWord(){
+    this.loading = true
+    this.error = false
+    const word = this.word.nativeElement.value
+    try {
+      if( word.length === 0 ) throw new Error("Not Work")
+      const { error, success } = await this.queries.getWord(word)
+      if( error ) {
+        throw new Error(error.title)
+      } else {
+        this.result = success
+      }
+    } catch(error:any) {
+      this.error = true
+      this.errorMessage = error.message
+    } finally {
+      this.loading = false
+    }
+  }
 
 
   getPhonetic(element:DictionaryResult, index:number):Array<string|Phonetic|null> {
