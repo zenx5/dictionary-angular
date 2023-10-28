@@ -8,6 +8,7 @@ import { DictionaryComponent } from './dictionary/dictionary.component';
 import { PronunciationComponent } from './pronunciation/pronunciation.component';
 import { DefinitionComponent } from './definition/definition.component';
 import { ConfigureComponent } from './configure/configure.component';
+import { AuxRouterComponent } from './aux-router/aux-router.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ConfigureComponent } from './configure/configure.component';
     DictionaryComponent,
     PronunciationComponent,
     DefinitionComponent,
-    ConfigureComponent
+    ConfigureComponent,
+    AuxRouterComponent
   ],
   imports: [
     BrowserModule,
